@@ -10,10 +10,21 @@ interface TimeLeft {
   seconds: number;
 }
 
+// Playlist of audio files
+const PLAYLIST = [
+  '/audio/track1.mp3',
+  '/audio/track2.mp3',
+  '/audio/track3.mp3',
+  '/audio/track4.mp3',
+  '/audio/track5.mp3',
+];
+
 export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [isLaunched, setIsLaunched] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [currentTrack, setCurrentTrack] = useState(0);
+  const [shuffledPlaylist, setShuffledPlaylist] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -43,11 +54,22 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  // Shuffle playlist on mount
+  useEffect(() => {
+    const shuffled = [...PLAYLIST].sort(() => Math.random() - 0.5);
+    setShuffledPlaylist(shuffled);
+  }, []);
+
   const handleVideoEnded = () => {
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.play();
     }
+  };
+
+  const handleAudioEnded = () => {
+    // Play next track in shuffled playlist
+    setCurrentTrack((prev) => (prev + 1) % shuffledPlaylist.length);
   };
 
   const toggleAudio = () => {
@@ -81,14 +103,17 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
       </video>
 
       {/* Background Audio */}
-      <audio
-        ref={audioRef}
-        autoPlay
-        loop
-        muted={isMuted}
-      >
-        <source src="/audio/background-music.mp3" type="audio/mpeg" />
-      </audio>
+      {shuffledPlaylist.length > 0 && (
+        <audio
+          key={currentTrack}
+          ref={audioRef}
+          autoPlay
+          muted={isMuted}
+          onEnded={handleAudioEnded}
+        >
+          <source src={shuffledPlaylist[currentTrack]} type="audio/mpeg" />
+        </audio>
+      )}
 
       {/* Audio Toggle Button */}
       <button
