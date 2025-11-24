@@ -73,11 +73,26 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   };
 
   const toggleAudio = () => {
-    setIsMuted(!isMuted);
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
     if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
+      audioRef.current.muted = newMutedState;
+      if (!newMutedState) {
+        audioRef.current.play().catch(err => console.log('Audio play error:', err));
+      }
     }
   };
+
+  // Force video to loop
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.addEventListener('ended', () => {
+        video.currentTime = 0;
+        video.play().catch(err => console.log('Video restart error:', err));
+      });
+    }
+  }, []);
 
   if (isLaunched) {
     return null;
