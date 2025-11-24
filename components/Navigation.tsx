@@ -8,15 +8,15 @@ export default function Navigation() {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-neutral-800">
-      <div className="section-container py-4 flex justify-between items-center">
-        <a href="/" className="text-2xl font-bold tracking-wider italic">
+      <div className="section-container py-3 md:py-4 flex justify-between items-center">
+        <a href="/" className="text-xl md:text-2xl font-bold tracking-wider italic">
           SLEEPY
         </a>
-        <div className="flex gap-8 items-center text-sm uppercase tracking-wider">
+        <div className="flex gap-3 md:gap-8 items-center text-xs md:text-sm uppercase tracking-wide md:tracking-wider">
           <a href="/shop" className="hover:text-neutral-400 transition-colors">
             Shop
           </a>
-          <a href="/about" className="hover:text-neutral-400 transition-colors">
+          <a href="/about" className="hover:text-neutral-400 transition-colors hidden sm:inline">
             About
           </a>
 
@@ -54,7 +54,7 @@ export default function Navigation() {
               </div>
             )}
           </div>
-          <a href="/support" className="hover:text-neutral-400 transition-colors">
+          <a href="/support" className="hover:text-neutral-400 transition-colors hidden sm:inline">
             Support
           </a>
           <CartIcon />

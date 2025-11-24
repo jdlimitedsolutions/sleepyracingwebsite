@@ -9,11 +9,11 @@ export default function Home() {
         
         {/* Placeholder for video - will be replaced with actual footage */}
         <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
-          <div className="text-center z-20">
-            <h1 className="text-7xl md:text-9xl font-bold tracking-widest mb-6 text-sleepy-red italic">
+          <div className="text-center z-20 px-4">
+            <h1 className="text-5xl sm:text-6xl md:text-9xl font-bold tracking-wide md:tracking-widest mb-4 md:mb-6 text-sleepy-red italic">
               SLEEPY
             </h1>
-            <p className="text-2xl md:text-3xl text-sleepy-neonBlue tracking-wider font-bold uppercase">
+            <p className="text-lg sm:text-xl md:text-3xl text-sleepy-neonBlue tracking-wide md:tracking-wider font-bold uppercase">
               Undercover. Overpowered.
             </p>
           </div>
