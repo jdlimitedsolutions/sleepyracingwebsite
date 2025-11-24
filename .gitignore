@@ -38,3 +38,8 @@ next-env.d.ts
 
 # csv data files (orders, submissions, etc)
 *.csv
+
+# video files (too large for git)
+/public/videos/*.mp4
+/public/videos/*.webm
+/public/videos/*.mov
