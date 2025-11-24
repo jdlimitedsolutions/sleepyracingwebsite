@@ -18,7 +18,7 @@ const PLAYLIST = [
 export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [isLaunched, setIsLaunched] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [shuffledPlaylist, setShuffledPlaylist] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -33,12 +33,14 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
         return null;
       }
 
-      return {
+      const timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60),
       };
+
+      return timeLeft;
     };
 
     setTimeLeft(calculateTimeLeft());
@@ -56,12 +58,29 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
     setShuffledPlaylist(shuffled);
   }, []);
 
-  const handleVideoEnded = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-    }
-  };
+  // Unmute audio on first user interaction
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (audioRef.current && audioRef.current.muted) {
+        audioRef.current.muted = false;
+        audioRef.current.play().catch(() => {});
+        setIsMuted(false);
+        document.removeEventListener('click', handleFirstInteraction);
+        document.removeEventListener('touchstart', handleFirstInteraction);
+        document.removeEventListener('keydown', handleFirstInteraction);
+      }
+    };
+
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('touchstart', handleFirstInteraction);
+    document.addEventListener('keydown', handleFirstInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+      document.removeEventListener('keydown', handleFirstInteraction);
+    };
+  }, []);
 
   const handleAudioEnded = () => {
     // Play next track in shuffled playlist
@@ -74,37 +93,47 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
     if (audioRef.current) {
       audioRef.current.muted = newMutedState;
       if (!newMutedState) {
-        audioRef.current.play().catch(err => console.log('Audio play error:', err));
+        audioRef.current.play().catch(() => {});
       }
     }
   };
-
-  // Force video to loop
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      const handleVideoEnd = () => {
-        console.log('Video ended, restarting...');
-        video.currentTime = 0;
-        video.play()
-          .then(() => console.log('Video restarted successfully'))
-          .catch(err => console.log('Video restart error:', err));
-      };
-
-      video.addEventListener('ended', handleVideoEnd);
-
-      return () => {
-        video.removeEventListener('ended', handleVideoEnd);
-      };
-    }
-  }, []);
 
   if (isLaunched) {
     return null;
   }
 
+  // Don't render until timeLeft is calculated
   if (!timeLeft) {
-    return null;
+    return (
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black">
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="fixed inset-0 w-full h-full object-cover"
+          style={{ filter: 'brightness(0.37)', zIndex: 0 }}
+        >
+          <source src="/videos/racing-bg.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark Overlay */}
+        <div className="fixed inset-0 bg-black/50" style={{ zIndex: 1 }}></div>
+
+        {/* Loading Animation */}
+        <div className="relative z-20 text-center">
+          <div className="text-4xl md:text-6xl font-bold tracking-wider mb-4 animate-pulse" style={{ color: '#FF0000' }}>
+            SLEEPY
+          </div>
+          <div className="flex gap-2 justify-center">
+            <div className="w-2 h-2 rounded-full animate-bounce" style={{ backgroundColor: '#39FF14', animationDelay: '0ms' }}></div>
+            <div className="w-2 h-2 rounded-full animate-bounce" style={{ backgroundColor: '#00BFFF', animationDelay: '150ms' }}></div>
+            <div className="w-2 h-2 rounded-full animate-bounce" style={{ backgroundColor: '#FF0000', animationDelay: '300ms' }}></div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -113,6 +142,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
       <video
         ref={videoRef}
         autoPlay
+        loop
         muted
         playsInline
         className="fixed inset-0 w-full h-full object-cover"
