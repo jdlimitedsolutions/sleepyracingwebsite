@@ -32,7 +32,9 @@
       "Bash(node:*)",
       "Bash(if [ -f nul ])",
       "Bash(then rm nul)",
-      "Bash(fi)"
+      "Bash(fi)",
+      "Bash(git rm:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []
