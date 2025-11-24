@@ -10,13 +10,9 @@ interface TimeLeft {
   seconds: number;
 }
 
-// Playlist of audio files
+// Playlist of audio files (add more tracks as you add files)
 const PLAYLIST = [
   '/audio/track1.mp3',
-  '/audio/track2.mp3',
-  '/audio/track3.mp3',
-  '/audio/track4.mp3',
-  '/audio/track5.mp3',
 ];
 
 export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
