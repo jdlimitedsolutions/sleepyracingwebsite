@@ -4,8 +4,6 @@ import { existsSync } from 'fs';
 import path from 'path';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
@@ -30,6 +28,7 @@ export async function POST(req: NextRequest) {
     // Send email notification
     if (process.env.RESEND_API_KEY) {
       try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
           from: 'SLEEPY Team <team@sleepyracing.com>',
           to: 'careers@sleepyracing.com',
