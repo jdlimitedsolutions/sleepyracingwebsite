@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(del:*)",
+      "Bash(tree:*)",
+      "Bash(npm run dev:*)",
+      "WebFetch(domain:www.quiet.racing)",
+      "Bash(taskkill:*)",
+      "Bash(nul)",
+      "Bash(find:*)",
+      "Bash(dir /b /s /a-d 2)",
+      "Bash(findstr:*)",
+      "WebFetch(domain:www.ghostracing.com)",
+      "Bash(netstat:*)",
+      "WebFetch(domain:www.nike.com)",
+      "WebFetch(domain:www.goat.com)",
+      "WebFetch(domain:www.off---white.com)",
+      "Bash(dir:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
