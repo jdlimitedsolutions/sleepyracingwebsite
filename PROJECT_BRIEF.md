@@ -1,12 +1,12 @@
 # SLEEPY - Project Brief
 
-**Last Updated:** November 18, 2024
+**Last Updated:** November 24, 2025
 
 ## Project Overview
 
 **Project Name:** SLEEPY
 **Tagline:** "Undercover. Overpowered."
-**Philosophy:** "Real builds only. Built different."
+**Philosophy:** "Built different."
 **Type:** E-commerce Website
 **Business Model:** Made-to-order custom apparel & accessories
 
@@ -33,7 +33,7 @@ Create a premium online destination for universal sleeper car culture enthusiast
 
 ## Brand Positioning
 
-**Core Message:** "Real builds only. Built different."
+**Core Message:** "Built different."
 
 **Brand Personality:**
 - Raw and authentic
@@ -47,7 +47,7 @@ Create a premium online destination for universal sleeper car culture enthusiast
 2. Made-to-order business model
 3. Niche focus on sleeper car culture
 4. Community-driven content
-5. Affiliate program for brand ambassadors
+5. Exclusive SLEEPY Team (5-10 positions)
 
 ## Technical Implementation
 
@@ -57,6 +57,7 @@ Create a premium online destination for universal sleeper car culture enthusiast
 - **Payments:** Stripe (to be integrated)
 - **Hosting:** TBD
 - **Data Storage:** CSV (temporary), Database (planned)
+- **Email:** Resend API for notifications
 
 ### Design System
 - **Color Theme:** Dark with neon accents (black backgrounds only)
@@ -77,8 +78,9 @@ Create a premium online destination for universal sleeper car culture enthusiast
 - [x] Checkout page with Stripe integration (ready for keys)
 - [x] Order confirmation page
 - [x] Social hub page (centralized community and social media links)
-- [x] Affiliate application page
+- [x] SLEEPY Team application page (replaced affiliates)
 - [x] Community content submission page
+- [x] Countdown timer for shop page (until Jan 1, 2026 launch)
 - [x] Playlists page with multiple Spotify embeds
 - [x] Support page with 12 comprehensive FAQs
 - [x] Terms of Service (professional, major brand format)
@@ -114,6 +116,8 @@ Create a premium online destination for universal sleeper car culture enthusiast
 - [x] API routes for forms, payments, orders
 - [x] CSV data storage
 - [x] Adobe Fonts (Eurostile Extended) integration
+- [x] Resend email notifications for team applications
+- [x] Countdown timer component for launch
 
 ### 🚧 Pending Setup (Ready for Keys)
 
@@ -328,3 +332,31 @@ Create a premium online destination for universal sleeper car culture enthusiast
 - CSV-based order storage
 - Navigation dropdown component
 - Social hub page with hover effects on cards
+
+## Recent Updates (Nov 24, 2025)
+
+**Major Feature Additions:**
+- Created countdown timer component for shop page (blocking access until Jan 1, 2026)
+- Replaced affiliate program with exclusive SLEEPY Team (5-10 positions)
+- Integrated Resend for email notifications on team applications
+- Applications sent to careers@sleepyracing.com and saved to CSV
+
+**Brand Messaging Updates:**
+- Removed "real builds only" language site-wide
+- Updated core philosophy to focus on "Built different"
+- Softened homepage culture section copy
+- Changed from startup/ground-floor messaging to established brand tone
+
+**SLEEPY Team Page:**
+- Clean, straightforward application form (Name, Email, Instagram, Location, Followers, Build, Why)
+- Removed portfolio field for simpler submission
+- Copy focuses on culture fit and exclusivity without being aggressive
+- Perks: Early access, discounts, exclusive gear, event access, unlimited aura
+- Emphasizes being chosen vs prescriptive job requirements
+
+**Technical Implementation:**
+- Created /api/team route with dual CSV + email notification
+- Removed /affiliates page and API route
+- Updated all navigation and footer references
+- Added Resend package for email delivery
+- Countdown timer shows until January 1, 2026 launch date
