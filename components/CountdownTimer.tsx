@@ -93,9 +93,9 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
       <video
         ref={videoRef}
         autoPlay
+        loop
         muted
         playsInline
-        onEnded={handleVideoEnded}
         className="fixed inset-0 w-full h-full object-cover"
         style={{ filter: 'brightness(0.37)', zIndex: 0 }}
       >
