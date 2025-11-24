@@ -108,7 +108,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
             onClick={handleEnter}
             className="px-12 py-4 text-2xl font-bold tracking-wider border-2 border-white hover:bg-white hover:text-black transition-all"
           >
-            ENTER
+            ENTER SHOP
           </button>
         </div>
       )}
