@@ -18,7 +18,7 @@ const PLAYLIST = [
 export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [isLaunched, setIsLaunched] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [shuffledPlaylist, setShuffledPlaylist] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -83,10 +83,19 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.addEventListener('ended', () => {
+      const handleVideoEnd = () => {
+        console.log('Video ended, restarting...');
         video.currentTime = 0;
-        video.play().catch(err => console.log('Video restart error:', err));
-      });
+        video.play()
+          .then(() => console.log('Video restarted successfully'))
+          .catch(err => console.log('Video restart error:', err));
+      };
+
+      video.addEventListener('ended', handleVideoEnd);
+
+      return () => {
+        video.removeEventListener('ended', handleVideoEnd);
+      };
     }
   }, []);
 
@@ -104,7 +113,6 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
       <video
         ref={videoRef}
         autoPlay
-        loop
         muted
         playsInline
         className="fixed inset-0 w-full h-full object-cover"
