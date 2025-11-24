@@ -13,7 +13,9 @@ interface TimeLeft {
 export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [isLaunched, setIsLaunched] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -41,22 +43,19 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  // Force video to loop
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      const handleEnded = () => {
-        video.currentTime = 0;
-        video.play().catch(err => console.log('Video play error:', err));
-      };
-
-      video.addEventListener('ended', handleEnded);
-
-      return () => {
-        video.removeEventListener('ended', handleEnded);
-      };
+  const handleVideoEnded = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
     }
-  }, []);
+  };
+
+  const toggleAudio = () => {
+    setIsMuted(!isMuted);
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
+    }
+  };
 
   if (isLaunched) {
     return null;
@@ -72,14 +71,32 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
       <video
         ref={videoRef}
         autoPlay
-        loop
         muted
         playsInline
+        onEnded={handleVideoEnded}
         className="fixed inset-0 w-full h-full object-cover"
         style={{ filter: 'brightness(0.37)', zIndex: 0 }}
       >
         <source src="/videos/racing-bg.mp4" type="video/mp4" />
       </video>
+
+      {/* Background Audio */}
+      <audio
+        ref={audioRef}
+        autoPlay
+        loop
+        muted={isMuted}
+      >
+        <source src="/audio/background-music.mp3" type="audio/mpeg" />
+      </audio>
+
+      {/* Audio Toggle Button */}
+      <button
+        onClick={toggleAudio}
+        className="fixed bottom-8 right-8 z-30 px-4 py-2 bg-black/80 border border-neutral-700 hover:border-white transition-colors text-xs uppercase tracking-wider"
+      >
+        {isMuted ? '🔇 Unmute' : '🔊 Mute'}
+      </button>
 
       {/* Dark Overlay */}
       <div className="fixed inset-0 bg-black/50" style={{ zIndex: 1 }}></div>
