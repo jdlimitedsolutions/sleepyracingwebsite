@@ -40,6 +40,17 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  // Force video to loop
+  useEffect(() => {
+    const video = document.querySelector('video');
+    if (video) {
+      video.addEventListener('ended', () => {
+        video.currentTime = 0;
+        video.play();
+      });
+    }
+  }, []);
+
   if (isLaunched) {
     return null;
   }
@@ -49,23 +60,23 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center section-container py-8 relative">
+    <div className="min-h-screen flex items-center justify-center py-8 relative overflow-hidden">
       {/* Background Video */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        style={{ filter: 'brightness(0.3)' }}
+        className="fixed inset-0 w-full h-full object-cover"
+        style={{ filter: 'brightness(0.37)', zIndex: 0 }}
       >
-        <source src="/videos/racing-bg.mp4#t=1140" type="video/mp4" />
+        <source src="/videos/racing-bg.mp4" type="video/mp4" />
       </video>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50 z-10"></div>
+      <div className="fixed inset-0 bg-black/50" style={{ zIndex: 1 }}></div>
 
-      <div className="max-w-4xl w-full text-center px-4 relative z-20">
+      <div className="max-w-4xl w-full text-center px-4 relative" style={{ zIndex: 20 }}>
         {/* Coming Soon Header */}
         <div className="mb-8 md:mb-12">
           <h1 className="text-5xl md:text-8xl font-bold tracking-wider mb-3 leading-tight" style={{ color: '#FF0000' }}>
