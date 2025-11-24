@@ -62,7 +62,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
         </div>
 
         {/* Subheading */}
-        <h2 className="text-2xl md:text-3xl font-bold tracking-wider mb-2" style={{ color: '#FFD700' }}>
+        <h2 className="text-2xl md:text-3xl font-bold tracking-wider mb-2 text-white">
           NEW YEAR. NEW DROP.
         </h2>
         <p className="text-neutral-400 mb-12">
@@ -78,7 +78,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
             <div className="text-xs md:text-sm text-neutral-400 tracking-wider">DAYS</div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-5xl md:text-7xl font-bold mb-2" style={{ color: '#39FF14' }}>
+            <div className="text-5xl md:text-7xl font-bold mb-2" style={{ color: '#00BFFF' }}>
               {timeLeft.hours}
             </div>
             <div className="text-xs md:text-sm text-neutral-400 tracking-wider">HOURS</div>
@@ -99,7 +99,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
 
         {/* The First Drop */}
         <div className="mb-16">
-          <h3 className="text-2xl md:text-3xl font-bold tracking-wider mb-8" style={{ color: '#FFD700' }}>
+          <h3 className="text-2xl md:text-3xl font-bold tracking-wider mb-8 text-white">
             THE FIRST DROP
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
@@ -111,7 +111,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
               </div>
             </div>
             <div>
-              <div className="text-5xl font-bold mb-2" style={{ color: '#39FF14' }}>9</div>
+              <div className="text-5xl font-bold mb-2" style={{ color: '#00BFFF' }}>9</div>
               <div className="text-lg font-bold mb-2">Color Options</div>
               <div className="text-sm text-neutral-400">
                 Full customization on every build.
@@ -129,7 +129,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
 
         {/* Stay Updated */}
         <div className="mb-8">
-          <h3 className="text-2xl md:text-3xl font-bold tracking-wider mb-4" style={{ color: '#FFD700' }}>
+          <h3 className="text-2xl md:text-3xl font-bold tracking-wider mb-4 text-white">
             STAY UPDATED
           </h3>
           <p className="text-neutral-400 mb-6">
