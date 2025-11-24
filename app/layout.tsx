@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 
 export const metadata: Metadata = {
   title: "SLEEPY - Underground Racing Lifestyle",
-  description: "Real builds only. No rice, no fake vents. Built different. Undercover. Overpowered.",
+  description: "Built different. Undercover. Overpowered. Sleeper car culture.",
 };
 
 export default function RootLayout({
@@ -42,7 +42,7 @@ export default function RootLayout({
                   <h4 className="font-bold mb-4 tracking-wider text-sm">COMPANY</h4>
                   <ul className="space-y-2 text-sm text-neutral-500">
                     <li><a href="/about" className="hover:text-white transition-colors">About</a></li>
-                    <li><a href="/affiliates" className="hover:text-white transition-colors">Affiliates</a></li>
+                    <li><a href="/team" className="hover:text-white transition-colors">SLEEPY Team</a></li>
                     <li><a href="/social" className="hover:text-white transition-colors">Social</a></li>
                     <li><a href="/support" className="hover:text-white transition-colors">Support</a></li>
                   </ul>
@@ -56,7 +56,7 @@ export default function RootLayout({
                 </div>
               </div>
               <div className="border-t border-neutral-800 pt-8 text-center text-sm text-neutral-500">
-                <p>SLEEPY &copy; {new Date().getFullYear()}. Real builds only. Built different.</p>
+                <p>SLEEPY &copy; {new Date().getFullYear()}. Built different.</p>
               </div>
             </div>
           </footer>

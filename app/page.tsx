@@ -61,10 +61,10 @@ export default function Home() {
       {/* Culture Section */}
       <section className="section-container bg-gradient-to-b from-black to-neutral-950">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6 tracking-wider">REAL BUILDS ONLY.</h2>
+          <h2 className="text-4xl font-bold mb-6 tracking-wider">BUILT DIFFERENT.</h2>
           <p className="text-lg text-neutral-400 leading-relaxed mb-8">
-            This is about what's under the hood, not what's on the surface.
-            No rice. No fake vents. No AutoZone stick-ons. Real performance or nothing.
+            This is about what's under the hood. Performance that doesn't need to announce itself.
+            Sleeper car culture for those who know.
           </p>
         </div>
       </section>
@@ -72,11 +72,11 @@ export default function Home() {
       {/* CTA Section */}
       <section className="section-container">
         <div className="glossy-card p-16 text-center">
-          <h2 className="text-3xl font-bold mb-4 tracking-wider">JOIN THE MOVEMENT</h2>
+          <h2 className="text-3xl font-bold mb-4 tracking-wider">JOIN THE SLEEPY TEAM</h2>
           <p className="text-neutral-400 mb-8">
-            Become a brand affiliate and get exclusive access to drops and deals.
+            Elite. Exclusive. Rep the brand and get early access to drops.
           </p>
-          <Link href="/affiliates" className="sharp-btn-primary">
+          <Link href="/team" className="sharp-btn-primary">
             Apply Now
           </Link>
         </div>

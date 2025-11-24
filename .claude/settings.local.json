@@ -27,7 +27,12 @@
       "Bash(git push:*)",
       "Bash(git remote:*)",
       "Bash(gh repo create:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(timeout /t 3 /nobreak)",
+      "Bash(node:*)",
+      "Bash(if [ -f nul ])",
+      "Bash(then rm nul)",
+      "Bash(fi)"
     ],
     "deny": [],
     "ask": []

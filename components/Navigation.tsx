@@ -33,10 +33,10 @@ export default function Navigation() {
               <div className="absolute top-full left-0 pt-2">
                 <div className="bg-black border border-neutral-800 rounded-sm min-w-[160px]">
                   <a
-                    href="/affiliates"
+                    href="/team"
                     className="block px-4 py-3 hover:bg-neutral-900 transition-colors"
                   >
-                    Affiliates
+                    SLEEPY Team
                   </a>
                   <a
                     href="/submit-content"

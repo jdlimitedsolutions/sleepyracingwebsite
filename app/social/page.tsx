@@ -7,17 +7,17 @@ export default function Social() {
 
       <div className="max-w-4xl">
         <p className="text-lg text-neutral-400 mb-12">
-          Connect with the SLEEPY community. Follow us, submit your build, or join our affiliate program.
+          Connect with the SLEEPY community. Follow us, submit your build, or apply to join the team.
         </p>
 
         {/* Community Links */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold mb-6 tracking-wider">COMMUNITY</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="/affiliates" className="glossy-card p-6 hover:border-sleepy-neonGreen transition-colors">
-              <h3 className="text-xl font-bold mb-2 tracking-wider">AFFILIATES</h3>
+            <a href="/team" className="glossy-card p-6 hover:border-sleepy-neonGreen transition-colors">
+              <h3 className="text-xl font-bold mb-2 tracking-wider">SLEEPY TEAM</h3>
               <p className="text-neutral-400 text-sm">
-                Join our ambassador program and rep the brand.
+                A limited crew who represent the brand.
               </p>
             </a>
             <a href="/submit-content" className="glossy-card p-6 hover:border-sleepy-neonBlue transition-colors">

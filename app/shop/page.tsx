@@ -3,9 +3,13 @@
 import { PRODUCTS } from "@/lib/products/data";
 import { useState } from "react";
 import Link from "next/link";
+import CountdownTimer from "@/components/CountdownTimer";
+
+const LAUNCH_DATE = new Date("2026-01-01T00:00:00");
 
 export default function Shop() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const isLaunched = new Date() >= LAUNCH_DATE;
 
   const categories = [
     { value: "all", label: "All" },
@@ -19,6 +23,10 @@ export default function Shop() {
     : selectedCategory === "apparel"
     ? PRODUCTS.filter(p => apparelTypes.includes(p.type))
     : PRODUCTS.filter(p => !apparelTypes.includes(p.type));
+
+  if (!isLaunched) {
+    return <CountdownTimer targetDate={LAUNCH_DATE} />;
+  }
 
   return (
     <div className="min-h-screen section-container">
