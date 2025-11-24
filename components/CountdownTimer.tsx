@@ -22,8 +22,7 @@ const PLAYLIST = [
 export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [isLaunched, setIsLaunched] = useState(false);
-  const [hasEntered, setHasEntered] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [shuffledPlaylist, setShuffledPlaylist] = useState<string[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -61,17 +60,6 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
     setShuffledPlaylist(shuffled);
   }, []);
 
-  const handleEnter = () => {
-    setHasEntered(true);
-    // Start video and audio
-    if (videoRef.current) {
-      videoRef.current.play().catch(err => console.log('Video play error:', err));
-    }
-    if (audioRef.current) {
-      audioRef.current.play().catch(err => console.log('Audio play error:', err));
-    }
-  };
-
   const handleVideoEnded = () => {
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
@@ -101,21 +89,10 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
 
   return (
     <div className="min-h-screen flex items-center justify-center py-8 relative overflow-hidden">
-      {/* Enter Button Overlay */}
-      {!hasEntered && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
-          <button
-            onClick={handleEnter}
-            className="px-12 py-4 text-2xl font-bold tracking-wider border-2 border-white hover:bg-white hover:text-black transition-all"
-          >
-            ENTER SHOP
-          </button>
-        </div>
-      )}
-
       {/* Background Video */}
       <video
         ref={videoRef}
+        autoPlay
         muted
         playsInline
         onEnded={handleVideoEnded}
@@ -126,10 +103,11 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
       </video>
 
       {/* Background Audio */}
-      {shuffledPlaylist.length > 0 && hasEntered && (
+      {shuffledPlaylist.length > 0 && (
         <audio
           key={currentTrack}
           ref={audioRef}
+          autoPlay
           muted={isMuted}
           onEnded={handleAudioEnded}
         >
@@ -138,14 +116,12 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
       )}
 
       {/* Audio Toggle Button */}
-      {hasEntered && (
-        <button
-          onClick={toggleAudio}
-          className="fixed bottom-8 right-8 z-30 px-4 py-2 bg-black/80 border border-neutral-700 hover:border-white transition-colors text-xs uppercase tracking-wider"
-        >
-          {isMuted ? '🔇 Unmute' : '🔊 Mute'}
-        </button>
-      )}
+      <button
+        onClick={toggleAudio}
+        className="fixed bottom-8 right-8 z-30 px-4 py-2 bg-black/80 border border-neutral-700 hover:border-white transition-colors text-xs uppercase tracking-wider"
+      >
+        {isMuted ? '🔇 Unmute' : '🔊 Mute'}
+      </button>
 
       {/* Dark Overlay */}
       <div className="fixed inset-0 bg-black/50" style={{ zIndex: 1 }}></div>
