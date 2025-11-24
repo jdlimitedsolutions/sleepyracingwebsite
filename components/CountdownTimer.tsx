@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface TimeLeft {
   days: number;
@@ -49,44 +50,104 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
 
   return (
     <div className="min-h-screen flex items-center justify-center section-container">
-      <div className="max-w-4xl w-full text-center">
-        <h1 className="text-6xl md:text-8xl font-bold tracking-widest mb-8 text-sleepy-red italic">
-          SLEEPY
-        </h1>
+      <div className="max-w-4xl w-full text-center px-4">
+        {/* Coming Soon Header */}
+        <div className="mb-12">
+          <h1 className="text-6xl md:text-8xl font-bold tracking-wider mb-2" style={{ color: '#FF0000' }}>
+            COMING
+            <br />
+            SOON
+          </h1>
+          <div className="w-32 h-1 mx-auto" style={{ backgroundColor: '#39FF14' }}></div>
+        </div>
 
-        <h2 className="text-3xl md:text-5xl font-bold tracking-wider mb-4 text-sleepy-neonGreen">
-          FIRST DROP
+        {/* Subheading */}
+        <h2 className="text-2xl md:text-3xl font-bold tracking-wider mb-2" style={{ color: '#FFD700' }}>
+          NEW YEAR. NEW DROP.
         </h2>
-
-        <p className="text-xl md:text-2xl text-neutral-400 mb-16 tracking-wide">
-          New Year. New Collection. Built different.
+        <p className="text-neutral-400 mb-12">
+          First collection drops January 1st, 2026.
         </p>
 
-        <div className="grid grid-cols-4 gap-4 md:gap-8 mb-12">
-          {[
-            { value: timeLeft.days, label: "DAYS" },
-            { value: timeLeft.hours, label: "HRS" },
-            { value: timeLeft.minutes, label: "MIN" },
-            { value: timeLeft.seconds, label: "SEC" },
-          ].map((item) => (
-            <div key={item.label} className="glossy-card p-6 md:p-8">
-              <div className="text-4xl md:text-6xl font-bold text-white mb-2">
-                {String(item.value).padStart(2, "0")}
-              </div>
-              <div className="text-sm md:text-base text-neutral-500 tracking-wider">
-                {item.label}
-              </div>
+        {/* Countdown Timer */}
+        <div className="grid grid-cols-4 gap-3 md:gap-6 mb-16">
+          <div className="flex flex-col items-center">
+            <div className="text-5xl md:text-7xl font-bold mb-2" style={{ color: '#39FF14' }}>
+              {timeLeft.days}
             </div>
-          ))}
+            <div className="text-xs md:text-sm text-neutral-400 tracking-wider">DAYS</div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-5xl md:text-7xl font-bold mb-2" style={{ color: '#39FF14' }}>
+              {timeLeft.hours}
+            </div>
+            <div className="text-xs md:text-sm text-neutral-400 tracking-wider">HOURS</div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-5xl md:text-7xl font-bold mb-2" style={{ color: '#FF0000' }}>
+              {timeLeft.minutes}
+            </div>
+            <div className="text-xs md:text-sm text-neutral-400 tracking-wider">MINUTES</div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-5xl md:text-7xl font-bold mb-2" style={{ color: '#FF0000' }}>
+              {timeLeft.seconds}
+            </div>
+            <div className="text-xs md:text-sm text-neutral-400 tracking-wider">SECONDS</div>
+          </div>
         </div>
 
-        <div className="glossy-card p-8 md:p-12">
-          <h3 className="text-2xl font-bold mb-4 tracking-wider">UNDERCOVER. OVERPOWERED.</h3>
-          <p className="text-neutral-400 leading-relaxed">
-            Custom apparel for the sleeper car culture. Performance first. Hidden power.
-            Underground heritage. The wait is almost over.
-          </p>
+        {/* The First Drop */}
+        <div className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold tracking-wider mb-8" style={{ color: '#FFD700' }}>
+            THE FIRST DROP
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div>
+              <div className="text-5xl font-bold mb-2" style={{ color: '#39FF14' }}>5</div>
+              <div className="text-lg font-bold mb-2">Products</div>
+              <div className="text-sm text-neutral-400">
+                Hoodies, tees, crewneck, beanie, hat/trucker.
+              </div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold mb-2" style={{ color: '#39FF14' }}>9</div>
+              <div className="text-lg font-bold mb-2">Color Options</div>
+              <div className="text-sm text-neutral-400">
+                Full customization on every build.
+              </div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold mb-2" style={{ color: '#FF0000' }}>5</div>
+              <div className="text-lg font-bold mb-2">Logo Variations</div>
+              <div className="text-sm text-neutral-400">
+                Make it yours.
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Stay Updated */}
+        <div className="mb-8">
+          <h3 className="text-2xl md:text-3xl font-bold tracking-wider mb-4" style={{ color: '#FFD700' }}>
+            STAY UPDATED
+          </h3>
+          <p className="text-neutral-400 mb-6">
+            Follow us on social for drop updates, previews, and exclusive content.
+          </p>
+          <Link
+            href="/social"
+            className="inline-block px-8 py-3 font-bold tracking-wider transition-all"
+            style={{ backgroundColor: '#FF0000', color: 'white' }}
+          >
+            FOLLOW US
+          </Link>
+        </div>
+
+        {/* Footer */}
+        <p className="text-xs text-neutral-500 mt-8">
+          Real builds only. Built different.
+        </p>
       </div>
     </div>
   );
