@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 
 interface TimeLeft {
@@ -13,6 +13,7 @@ interface TimeLeft {
 export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [isLaunched, setIsLaunched] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -42,12 +43,18 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
 
   // Force video to loop
   useEffect(() => {
-    const video = document.querySelector('video');
+    const video = videoRef.current;
     if (video) {
-      video.addEventListener('ended', () => {
+      const handleEnded = () => {
         video.currentTime = 0;
-        video.play();
-      });
+        video.play().catch(err => console.log('Video play error:', err));
+      };
+
+      video.addEventListener('ended', handleEnded);
+
+      return () => {
+        video.removeEventListener('ended', handleEnded);
+      };
     }
   }, []);
 
@@ -63,6 +70,7 @@ export default function CountdownTimer({ targetDate }: { targetDate: Date }) {
     <div className="min-h-screen flex items-center justify-center py-8 relative overflow-hidden">
       {/* Background Video */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
