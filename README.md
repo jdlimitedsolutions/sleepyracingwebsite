@@ -235,4 +235,4 @@ This is a private brand project. For questions or support, contact the developme
 
 ## License
 
-All rights reserved. SLEEPY brand © 2024
+All rights reserved. SLEEPY brand © 2024-2025
