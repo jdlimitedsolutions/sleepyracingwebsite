@@ -42,7 +42,7 @@ export default function ProductCustomizer({ productId }: { productId: string }) 
   return (
     <div className="min-h-screen section-container">
       <Link href="/shop" className="text-neutral-400 hover:text-white mb-8 inline-block">
-        &larr; Back to Shop
+        ← Back to Shop
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
