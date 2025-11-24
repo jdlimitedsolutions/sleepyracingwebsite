@@ -42,11 +42,10 @@ export default function ProductCustomizer({ productId }: { productId: string }) 
   return (
     <div className="min-h-screen section-container">
       <Link href="/shop" className="text-neutral-400 hover:text-white mb-8 inline-block">
-        ê Back to Shop
+        &larr; Back to Shop
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Product Preview */}
         <div>
           <div className="glossy-card p-8">
             <h3 className="text-sm uppercase tracking-wider mb-4 text-neutral-500">Live Preview</h3>
@@ -74,7 +73,6 @@ export default function ProductCustomizer({ productId }: { productId: string }) 
           </div>
         </div>
 
-        {/* Customization Options */}
         <div className="glossy-card p-8">
           <h1 className="text-4xl font-bold mb-4 tracking-wider">{product.name}</h1>
           <p className="text-neutral-400 mb-8">{product.description}</p>
